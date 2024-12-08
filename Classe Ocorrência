@@ -1,0 +1,19 @@
+import java.util.ArrayList;
+import java.util.List;
+
+// Classe Ocorrência
+class Ocorrencia {
+    String placa;
+    String logradouro;
+    String data;
+    int velocidade;
+    int diaDaSemana;
+
+    public Ocorrencia(String placa, String logradouro, String data, int velocidade, int diaDaSemana) {
+        this.placa = placa;
+        this.logradouro = logradouro;
+        this.data = data;
+        this.velocidade = velocidade;
+        this.diaDaSemana = diaDaSemana;
+    }
+}
