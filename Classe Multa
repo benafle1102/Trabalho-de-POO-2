@@ -1,0 +1,19 @@
+// Classe Multa
+class Multa {
+    String descricao;
+    int nivel;
+    String placa;
+    String data;
+
+    public Multa(String descricao, int nivel, String placa, String data) {
+        this.descricao = descricao;
+        this.nivel = nivel;
+        this.placa = placa;
+        this.data = data;
+    }
+
+    @Override
+    public String toString() {
+        return "Multa: " + descricao + " | Nível: " + nivel + " | Placa: " + placa + " | Data: " + data;
+    }
+}
