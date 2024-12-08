@@ -1,0 +1,19 @@
+// Classe abstrata RegraMulta
+abstract class RegraMulta {
+    static int VALOR_MULTA_LEVE = 100;
+    static int VALOR_MULTA_MEDIA = 200;
+    static int VALOR_MULTA_GRAVE = 500;
+
+    public abstract int verificaNivelMulta(Ocorrencia ocorrencia);
+
+    public Multa calcularMulta(Ocorrencia ocorrencia) {
+        int nivel = verificaNivelMulta(ocorrencia);
+        String descricao = obterDescricaoMulta();
+        if (nivel > 0) {
+            return new Multa(descricao, nivel, ocorrencia.placa, ocorrencia.data);
+        }
+        return null;
+    }
+
+    public abstract String obterDescricaoMulta();
+}
