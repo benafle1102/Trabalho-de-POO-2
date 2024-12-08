@@ -1,0 +1,7 @@
+ // Exibindo multas geradas
+        System.out.println("Multas geradas:");
+        for (Multa multa : baseDeDados.multas) {
+            System.out.println(multa);
+        }
+    }
+}
