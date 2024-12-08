@@ -1,0 +1,31 @@
+// Base de Dados
+class BaseDeDados {
+    List<Ocorrencia> ocorrenciasNaoProcessadas = new ArrayList<>();
+    List<Ocorrencia> ocorrenciasProcessadas = new ArrayList<>();
+    List<Multa> multas = new ArrayList<>();
+    List<RegraMulta> regras = new ArrayList<>();
+
+    public void inicializaRegras() {
+        regras.add(new RegraVelocidade(60, "Avenida Washington Luiz"));
+        regras.add(new RegraVelocidade(70, "Avenida Nações Unidas"));
+        regras.add(new RegraRodizio(1, new String[]{"Avenida Bandeirantes", "Avenida 23 de Maio"}, 1));
+        regras.add(new RegraCorredorOnibus(6, 23, "Avenida Santo Amaro"));
+    }
+
+    public void processarOcorrencias() {
+        for (Ocorrencia ocorrencia : ocorrenciasNaoProcessadas) {
+            for (RegraMulta regra : regras) {
+                Multa multa = regra.calcularMulta(ocorrencia);
+                if (multa != null) {
+                    multas.add(multa);
+                }
+            }
+            ocorrenciasProcessadas.add(ocorrencia);
+        }
+        ocorrenciasNaoProcessadas.clear();
+    }
+
+    public void registrarOcorrencia(Ocorrencia ocorrencia) {
+        ocorrenciasNaoProcessadas.add(ocorrencia);
+    }
+}
