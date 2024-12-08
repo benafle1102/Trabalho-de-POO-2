@@ -24,3 +24,57 @@ class RegraVelocidade extends RegraMulta {
         return "Multa por excesso de velocidade no logradouro: " + logradouro;
     }
 }
+
+class RegraRodizio extends RegraMulta {
+    int diaRodizio;
+    String[] logradouros;
+    int finalPlaca;
+
+    public RegraRodizio(int diaRodizio, String[] logradouros, int finalPlaca) {
+        this.diaRodizio = diaRodizio;
+        this.logradouros = logradouros;
+        this.finalPlaca = finalPlaca;
+    }
+
+    @Override
+    public int verificaNivelMulta(Ocorrencia ocorrencia) {
+        for (String logradouro : logradouros) {
+            if (ocorrencia.logradouro.equals(logradouro) &&
+                ocorrencia.diaDaSemana == this.diaRodizio &&
+                Integer.parseInt(ocorrencia.placa.substring(ocorrencia.placa.length() - 1)) == this.finalPlaca) {
+                return 2; // Média
+            }
+        }
+        return 0;
+    }
+
+    @Override
+    public String obterDescricaoMulta() {
+        return "Multa por infração de rodízio.";
+    }
+}
+
+class RegraCorredorOnibus extends RegraMulta {
+    int horaInicio, horaFim;
+    String logradouro;
+
+    public RegraCorredorOnibus(int horaInicio, int horaFim, String logradouro) {
+        this.horaInicio = horaInicio;
+        this.horaFim = horaFim;
+        this.logradouro = logradouro;
+    }
+
+    @Override
+    public int verificaNivelMulta(Ocorrencia ocorrencia) {
+        int hora = Integer.parseInt(ocorrencia.data.split(" ")[1].split(":")[0]);
+        if (ocorrencia.logradouro.equals(this.logradouro) && hora >= horaInicio && hora <= horaFim) {
+            return 3; // Grave
+        }
+        return 0;
+    }
+
+    @Override
+    public String obterDescricaoMulta() {
+        return "Multa por uso indevido de corredor de ônibus no logradouro: " + logradouro;
+    }
+}
