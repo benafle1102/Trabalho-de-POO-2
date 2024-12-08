@@ -1,0 +1,5 @@
+// Classe principal com o método main
+public class SistemaMultas {
+    public static void main(String[] args) {
+        // Criando a base de dados
+        BaseDeDados baseDeDados = new BaseDeDados();
