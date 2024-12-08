@@ -1,0 +1,26 @@
+// Regras específicas
+class RegraVelocidade extends RegraMulta {
+    int limite;
+    String logradouro;
+
+    public RegraVelocidade(int limite, String logradouro) {
+        this.limite = limite;
+        this.logradouro = logradouro;
+    }
+
+    @Override
+    public int verificaNivelMulta(Ocorrencia ocorrencia) {
+        if (ocorrencia.logradouro.equals(this.logradouro) && ocorrencia.velocidade > this.limite) {
+            int excesso = ocorrencia.velocidade - this.limite;
+            if (excesso <= 10) return 1; // Leve
+            if (excesso <= 30) return 2; // Média
+            return 3; // Grave
+        }
+        return 0; // Sem multa
+    }
+
+    @Override
+    public String obterDescricaoMulta() {
+        return "Multa por excesso de velocidade no logradouro: " + logradouro;
+    }
+}
