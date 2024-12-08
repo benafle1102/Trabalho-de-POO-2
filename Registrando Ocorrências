@@ -1,0 +1,4 @@
+// Registrando ocorrências
+        baseDeDados.registrarOcorrencia(new Ocorrencia("ABC1234", "Avenida Washington Luiz", "2024-12-07 14:00", 80, 2));
+        baseDeDados.registrarOcorrencia(new Ocorrencia("XYZ5678", "Avenida Santo Amaro", "2024-12-07 07:30", 50, 3));
+        baseDeDados.registrarOcorrencia(new Ocorrencia("JKL8901", "Avenida 23 de Maio", "2024-12-07 10:00", 60, 1));
